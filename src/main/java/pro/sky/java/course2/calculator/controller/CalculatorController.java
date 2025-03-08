@@ -1,19 +1,19 @@
-package pro.sky.java.course2.calculator.Controller;
+package pro.sky.java.course2.calculator.controller;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pro.sky.java.course2.calculator.CalculatorService.CalculatorService;
+import pro.sky.java.course2.calculator.calculatorService.CalculatorService;
 
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {
-    private final CalculatorService calculatorService;
+    private final CalculatorService CalculatorService;
 
-    public CalculatorController (CalculatorService calculatorService) {
-        this.calculatorService = calculatorService;
+    public CalculatorController(CalculatorService calculatorService) {
+        this.CalculatorService = calculatorService;
     }
 
     @GetMapping()
@@ -27,7 +27,7 @@ public class CalculatorController {
         if (a == 0 || b == 0) {
             return "Какой то из параметров не передан!";
         }
-        return buildResultString(a, b, "+", calculatorService.sum(a, b));
+        return buildResultString(a, b, "+", CalculatorService.sum(a, b));
     }
 
     @GetMapping("/minus")
@@ -36,7 +36,7 @@ public class CalculatorController {
         if (a == 0 || b == 0) {
             return "Какой то из параметров не передан!";
         }
-        return buildResultString(a, b, "-", calculatorService.minus(a, b));
+        return buildResultString(a, b, "-", CalculatorService.minus(a, b));
     }
 
     @GetMapping("/multiply")
@@ -45,7 +45,7 @@ public class CalculatorController {
         if (a == 0 || b == 0) {
             return "Какой то из параметров не передан!";
         }
-        return buildResultString(a, b, "*", calculatorService.multiply(a, b));
+        return buildResultString(a, b, "*", CalculatorService.multiply(a, b));
     }
 
     @GetMapping("/divide")
@@ -57,7 +57,7 @@ public class CalculatorController {
         if (b == 0) {
             return "Делить на ноль нельзя!";
         }
-        return buildResultString(a, b, "/", calculatorService.divide(a, b));
+        return buildResultString(a, b, "/", CalculatorService.divide(a, b));
     }
 
     private String buildResultString(int a,
